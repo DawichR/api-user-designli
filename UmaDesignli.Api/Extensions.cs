@@ -1,15 +1,16 @@
 ﻿using UmaDesignli.Api.Services;
-using UmaDesignli.Api.Filters;
 using UmaDesignli.Application.Interfaces;
 using UmaDesignli.Application.Behaviors;
 using UmaDesignli.Infrastructure.Persistence;
 using UmaDesignli.Infrastructure.Persistence.Repositories;
 using UmaDesignli.Application.Interfaces.Repositories;
-using UmaDesignli.Application.Interfaces;
 using UmaDesignli.Infrastructure.Token;
 using MediatR;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace UmaDesignli.Api
 {
@@ -24,16 +25,6 @@ namespace UmaDesignli.Api
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             });
 
-            // Register FluentValidation validators
-           // services.AddValidatorsFromAssembly(typeof(CreateEmployeeCommand).Assembly);
-
-            // Register repositories
-            // Register the concrete EmployeeRepository as singleton first
-          //  services.AddSingleton<EmployeeRepository>();
-            
-            // Register interfaces pointing to the same singleton instance
-           // services.AddSingleton<IEmployeeRepository>(sp => sp.GetRequiredService<EmployeeRepository>());
-          //  services.AddSingleton<IRepository<Userapp>>(sp => sp.GetRequiredService<EmployeeRepository>());
             
             // Register generic repository for other entities
             services.AddSingleton(typeof(IRepository<>), typeof(Repository<>));
@@ -43,6 +34,37 @@ namespace UmaDesignli.Api
 
             // Register TokenProvider
             services.AddSingleton<ITokenProvider, TokenProvider>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Configure JWT Authentication
+        /// </summary>
+        /// <param name="services">services</param>
+        /// <param name="configuration">configuration</param>
+        /// <returns></returns>
+        internal static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(configuration["Jwt:Secret"]!))
+                };
+            });
 
             return services;
         }
@@ -79,8 +101,7 @@ namespace UmaDesignli.Api
                     config.IncludeXmlComments(domainXmlPath);
                 }
 
-                // Use custom enum filter to show descriptions
-                config.SchemaFilter<EnumSchemaFilter>();
+   
 
                 // Configure JWT authentication in Swagger
                 config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

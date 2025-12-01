@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UmaDesignli.Application.Commands.Access;
+using UmaDesignli.Application.Queries.Access;
 
 namespace UmaDesignli.Api.Controllers.Access
 {
@@ -17,19 +18,7 @@ namespace UmaDesignli.Api.Controllers.Access
             _mediator = mediator;
         }
 
-        ///// <summary>
-        ///// Get all employees
-        ///// </summary>
-        ///// <returns>List of all employees</returns>
-        ///// <response code="200">Returns the list of employees</response>
-        //[HttpGet]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var result = await _mediator.Send(new GetAllEmployeesQuery());
-        //    return Ok(result);
-        //}
-
+      
         /// <summary>
         /// User Login.
         /// </summary>
@@ -46,6 +35,5 @@ namespace UmaDesignli.Api.Controllers.Access
             var result = await _mediator.Send(command);
             return Ok(result);
         }
-
     }
 }

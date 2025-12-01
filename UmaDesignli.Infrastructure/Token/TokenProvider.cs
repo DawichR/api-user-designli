@@ -33,7 +33,7 @@ namespace UmaDesignli.Infrastructure.Token
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Nickname, user.Username),
-                    new Claim(JwtRegisteredClaimNames.Name, string.Concat( user.Name, user.Username)),
+                    new Claim(JwtRegisteredClaimNames.Name, $"{user.Name} {user.LastName}".Trim()),
                 ]),
                 Expires = DateTime.UtcNow.AddMinutes(configuration.GetValue<int>("Jwt:ExpirationInMinutes")),
                 SigningCredentials = credentials,
