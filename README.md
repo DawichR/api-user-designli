@@ -23,7 +23,7 @@ This project is a technical challenge solution that implements a user management
 
 ## ✅ Requirements Compliance
 
-### Challenge Requirements
+### Requirements
 All requirements have been successfully implemented:
 
 1. **✓ .NET 8 Project** - Built using .NET 8 SDK
@@ -33,12 +33,6 @@ All requirements have been successfully implemented:
 5. **✓ Protected GET Endpoint** - Returns list of users, protected with JWT authentication
 6. **✓ Login Razor View** - Modern, responsive login page with Designli branding
 7. **✓ Users List Page** - Protected page displaying users, only accessible with valid JWT
-
-### Architecture Compliance
-The project strictly follows the challenge requirements with a clean separation:
-- **`Userapp` (DTO)** - Simple class with only `username` and `password` for login requests
-- **`User` (Entity)** - Complete user entity with all fields (Id, Username, Password, Email, Name, LastName) for data storage
-- This separation ensures compliance with requirement #2 while maintaining clean architecture principles
 
 ### Additional Implemented Features
 - **Clean Architecture** - Separation of concerns with distinct layers
