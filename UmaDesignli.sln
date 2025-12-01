@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmaDesignli.Api", "UmaDesignli.Api\UmaDesignli.Api.csproj", "{0FDFD95F-CDC8-436E-A519-3DDFF117A5BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{51D1B547-A057-479B-9A72-FEAE804D0DFD} = {51D1B547-A057-479B-9A72-FEAE804D0DFD}
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804} = {FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmaDesignli.Application", "UmaDesignli.Application\UmaDesignli.Application.csproj", "{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FEE59FFF-087B-4645-B194-04C34CB560AF} = {FEE59FFF-087B-4645-B194-04C34CB560AF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmaDesignli.Domain", "UmaDesignli.Domain\UmaDesignli.Domain.csproj", "{FEE59FFF-087B-4645-B194-04C34CB560AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmaDesignli.Infrastructure", "UmaDesignli.Infrastructure\UmaDesignli.Infrastructure.csproj", "{51D1B547-A057-479B-9A72-FEAE804D0DFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804} = {FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}
+		{FEE59FFF-087B-4645-B194-04C34CB560AF} = {FEE59FFF-087B-4645-B194-04C34CB560AF}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5AD46BCC-86AC-44AD-BBEC-3BDE9A113878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmaDesignli.UnitTest", "UmaDesignli.UnitTest\UmaDesignli.UnitTest.csproj", "{A06323AD-CBAA-4A15-A8AA-3EE26647EA85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FDFD95F-CDC8-436E-A519-3DDFF117A5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDFD95F-CDC8-436E-A519-3DDFF117A5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDFD95F-CDC8-436E-A519-3DDFF117A5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDFD95F-CDC8-436E-A519-3DDFF117A5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFF0610-4B51-459D-BC9C-4E0DDCB9B804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE59FFF-087B-4645-B194-04C34CB560AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE59FFF-087B-4645-B194-04C34CB560AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE59FFF-087B-4645-B194-04C34CB560AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE59FFF-087B-4645-B194-04C34CB560AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D1B547-A057-479B-9A72-FEAE804D0DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D1B547-A057-479B-9A72-FEAE804D0DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D1B547-A057-479B-9A72-FEAE804D0DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D1B547-A057-479B-9A72-FEAE804D0DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A06323AD-CBAA-4A15-A8AA-3EE26647EA85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A06323AD-CBAA-4A15-A8AA-3EE26647EA85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A06323AD-CBAA-4A15-A8AA-3EE26647EA85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A06323AD-CBAA-4A15-A8AA-3EE26647EA85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A06323AD-CBAA-4A15-A8AA-3EE26647EA85} = {5AD46BCC-86AC-44AD-BBEC-3BDE9A113878}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8595749A-A700-44DD-A137-6F2F3411116B}
+	EndGlobalSection
+EndGlobal

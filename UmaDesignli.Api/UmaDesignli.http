@@ -1,0 +1,9 @@
+@UmaDesignli_HostAddress = http://localhost:5109
+
+###############################################
+# Health Check
+###############################################
+
+### Health Check
+GET {{UmaDesignli_HostAddress}}/health
+Accept: application/json
