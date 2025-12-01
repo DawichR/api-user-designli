@@ -3,16 +3,19 @@ using UmaDesignli.Domain.Entities;
 
 namespace UmaDesignli.Infrastructure.Persistence.Seeds
 {
+    /// <summary>
+    /// User seeding - Creates test users for in-memory database
+    /// </summary>
     public class UserSeeding
     {
-        public static Task<List<Userapp>> Seed(ILogger logger, CancellationToken cancellationToken = default)
+        public static Task<List<User>> Seed(ILogger logger, CancellationToken cancellationToken = default)
         {
-            logger.LogInformation("Initialize seeding information for USers");
+            logger.LogInformation("Initialize seeding information for Users");
             try
             {
-                var employees = new List<Userapp>
+                var users = new List<User>
                 {
-                    new Userapp
+                    new User
                     {
                         Username = "jperez",
                         Name = "Juan",
@@ -20,7 +23,7 @@ namespace UmaDesignli.Infrastructure.Persistence.Seeds
                         Email = "juan.perez@designli.co",
                         Password = "password@123",
                     },
-                    new Userapp
+                    new User
                     {
                         Username = "mgarcia",
                         Name = "María",
@@ -29,7 +32,7 @@ namespace UmaDesignli.Infrastructure.Persistence.Seeds
                         Password = "password@123",
 
                     },
-                    new Userapp
+                    new User
                     {
                         Username = "crodriguez",
                         Name = "Carlos",
@@ -40,13 +43,13 @@ namespace UmaDesignli.Infrastructure.Persistence.Seeds
                     }
                 };
 
-                logger.LogInformation($"Successfully created {employees.Count} employees for seeding");
-                return Task.FromResult(employees);
+                logger.LogInformation($"Successfully created {users.Count} users for seeding");
+                return Task.FromResult(users);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, $"The seeder method for {nameof(UserSeeding)} has an error.");
-                return Task.FromResult(new List<Userapp>());
+                return Task.FromResult(new List<User>());
             }
         }
     }

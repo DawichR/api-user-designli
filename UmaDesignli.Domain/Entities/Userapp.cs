@@ -1,51 +1,24 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace UmaDesignli.Domain.Entities
 {
     /// <summary>
-    /// Userapp Class
+    /// Userapp DTO - Simple class for login authentication as per challenge requirements
+    /// Contains only username and password fields
     /// </summary>
     [Description("Userapp")]
     public sealed class Userapp
     {
         /// <summary>
-        /// Username Identifier
+        /// Username for authentication
         /// </summary>
-        /// <example>1</example>
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Username
-        /// </summary>
-        /// <example>Juan</example>
+        /// <example>jperez</example>
         public required string Username { get; set; }
 
         /// <summary>
-        /// Password
+        /// Password for authentication
         /// </summary>
-        /// <example>Fernandez</example>
+        /// <example>password@123</example>
         public required string Password { get; set; }
-
-
-        /// <summary>
-        /// Email
-        /// </summary>
-        /// <example>j.felix@designli.co</example>
-        [EmailAddress]
-        public string Email { get; set; }
-        
-        /// <summary>
-        /// Name
-        /// </summary>
-        /// <example>Juan</example>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Lastname
-        /// </summary>
-        /// <example>Felix</example>
-        public string LastName { get; set; }
-
     }
 }

@@ -7,14 +7,14 @@ using UmaDesignli.Infrastructure.Persistence.Seeds;
 namespace UmaDesignli.Infrastructure.Persistence
 {
     /// <summary>
-    /// Data seeder
+    /// Data seeder - Initializes in-memory database with test users
     /// </summary>
     public class DataSeeder : IDataSeeder
     {
         private readonly ILogger<DataSeeder> _logger;
-        private readonly IRepository<Userapp> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
-        public DataSeeder(ILogger<DataSeeder> logger, IRepository<Userapp> userRepository)
+        public DataSeeder(ILogger<DataSeeder> logger, IRepository<User> userRepository)
         {
             _logger = logger;
             _userRepository = userRepository;

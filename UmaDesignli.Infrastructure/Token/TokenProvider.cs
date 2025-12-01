@@ -17,9 +17,9 @@ namespace UmaDesignli.Infrastructure.Token
         /// <summary>
         /// Method for create the Token base don the Jwt configuration.
         /// </summary>
-        /// <param name="user">Userapp</param>
+        /// <param name="user">User entity</param>
         /// <returns>Token</returns>
-        public string Create (Userapp user)
+        public string Create (User user)
         {
             string secretKey = configuration["Jwt:Secret"]!;
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));

@@ -16,6 +16,7 @@
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UmaDesignli.Api\UmaDesignli.Api.csproj" />
     <ProjectReference Include="..\UmaDesignli.Application\UmaDesignli.Application.csproj" />
     <ProjectReference Include="..\UmaDesignli.Domain\UmaDesignli.Domain.csproj" />
     <ProjectReference Include="..\UmaDesignli.Infrastructure\UmaDesignli.Infrastructure.csproj" />

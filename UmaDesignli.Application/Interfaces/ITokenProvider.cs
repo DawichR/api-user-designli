@@ -12,6 +12,6 @@ namespace UmaDesignli.Application.Interfaces
         /// </summary>
         /// <param name="user">User entity</param>
         /// <returns>JWT token string</returns>
-        string Create(Userapp user);
+        string Create(User user);
     }
 }

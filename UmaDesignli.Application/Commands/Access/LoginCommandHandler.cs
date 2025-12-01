@@ -5,12 +5,15 @@ using UmaDesignli.Domain.Entities;
 
 namespace UmaDesignli.Application.Commands.Access
 {
+    /// <summary>
+    /// Handler for login command - validates credentials and generates JWT token
+    /// </summary>
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResult>
     {
-        private readonly IRepository<Userapp> _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly ITokenProvider _tokenProvider;
 
-        public LoginCommandHandler(IRepository<Userapp> userRepository, ITokenProvider tokenProvider)
+        public LoginCommandHandler(IRepository<User> userRepository, ITokenProvider tokenProvider)
         {
             _userRepository = userRepository;
             _tokenProvider = tokenProvider;
@@ -18,6 +21,7 @@ namespace UmaDesignli.Application.Commands.Access
 
         public async Task<LoginResult> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
+            // Get all users and find matching credentials
             var users = await _userRepository.GetAllAsync();
             var user = users.FirstOrDefault(u =>
                 u.Username == request.Username &&
@@ -28,6 +32,7 @@ namespace UmaDesignli.Application.Commands.Access
                 throw new UnauthorizedAccessException("Invalid credentials");
             }
 
+            // Generate JWT token for authenticated user
             var token = _tokenProvider.Create(user);
 
             return new LoginResult(token, user.Username);
