@@ -1,9 +1,110 @@
-@UmaDesignli_HostAddress = http://localhost:5109
+@UmaDesignli_HostAddress = http://localhost:5002
+@UmaDesignli_HostAddress_Docker = http://localhost:5000
 
 ###############################################
 # Health Check
 ###############################################
 
-### Health Check
+### Health Check (Local)
 GET {{UmaDesignli_HostAddress}}/health
+Accept: application/json
+
+### Health Check (Docker)
+GET {{UmaDesignli_HostAddress_Docker}}/health
+Accept: application/json
+
+###############################################
+# Authentication - Login
+###############################################
+
+### Login with User 1 (Juan Pérez)
+POST {{UmaDesignli_HostAddress}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "jperez",
+  "password": "password@123"
+}
+
+### Login with User 2 (María García)
+POST {{UmaDesignli_HostAddress}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "mgarcia",
+  "password": "password@123"
+}
+
+### Login with User 3 (Carlos Rodríguez)
+POST {{UmaDesignli_HostAddress}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "crodriguez",
+  "password": "password@123"
+}
+
+### Login with Invalid Credentials (Should fail)
+POST {{UmaDesignli_HostAddress}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "invalid",
+  "password": "wrongpassword"
+}
+
+### Login in Docker (Juan Pérez)
+POST {{UmaDesignli_HostAddress_Docker}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "jperez",
+  "password": "password@123"
+}
+
+###############################################
+# Users - Protected Endpoints
+# Note: Replace {{token}} with actual JWT token from login response
+###############################################
+
+### Get All Users (Protected - Requires JWT)
+GET {{UmaDesignli_HostAddress}}/api/users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get All Users - Alternative Endpoint (Protected)
+GET {{UmaDesignli_HostAddress}}/api/access/users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get All Users Without Token (Should fail with 401)
+GET {{UmaDesignli_HostAddress}}/api/users
+Accept: application/json
+
+### Get All Users in Docker (Protected)
+GET {{UmaDesignli_HostAddress_Docker}}/api/users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###############################################
+# Complete Workflow Example
+###############################################
+
+### Step 1: Login to get JWT token
+# @name loginRequest
+POST {{UmaDesignli_HostAddress}}/api/access/user/login
+Content-Type: application/json
+
+{
+  "username": "jperez",
+  "password": "password@123"
+}
+
+### Step 2: Extract token and get users
+# Use the token from previous request
+@authToken = {{loginRequest.response.body.token}}
+
+### Step 3: Get all users with extracted token
+GET {{UmaDesignli_HostAddress}}/api/users
+Authorization: Bearer {{authToken}}
 Accept: application/json

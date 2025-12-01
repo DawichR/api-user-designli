@@ -1,19 +1,20 @@
-version: '3.8'
-
 services:
   api:
-    image: Uma-designli-api:latest
+    image: uma-designli-api:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: Uma-designli-api
+    container_name: uma-designli-api
     ports:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
+      - Logging__Console__FormatterName=Simple
+      - Logging__Console__FormatterOptions__SingleLine=true
+      - Logging__Console__FormatterOptions__IncludeScopes=true
     networks:
-      - Uma-network
+      - uma-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
@@ -21,7 +22,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    labels:
+      - "description=User Management App - Designli Technical Challenge"
+      - "version=1.0.0"
 
 networks:
-  Uma-network:
+  uma-network:
     driver: bridge

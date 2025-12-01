@@ -16,9 +16,15 @@ RUN dotnet restore
 # Copy all source code
 COPY . .
 
-# Run unit tests
+# Run unit tests with detailed output
 WORKDIR /src/UmaDesignli.UnitTest
-RUN dotnet test --configuration Release --no-restore --verbosity normal
+RUN echo "========================================" && \
+    echo "Running Unit Tests..." && \
+    echo "========================================" && \
+    dotnet test --configuration Release --no-restore --verbosity normal --logger "console;verbosity=detailed" && \
+    echo "========================================" && \
+    echo "✓ All tests passed successfully!" && \
+    echo "========================================"
 
 # Build the application
 WORKDIR /src/UmaDesignli.Api
@@ -39,7 +45,7 @@ COPY --from=publish /app/publish .
 
 # Set environment variables
 ENV ASPNETCORE_URLS=http://+:8080
-ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
