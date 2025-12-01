@@ -1,0 +1,63 @@
+@page
+@model UmaDesignli.Api.Pages.UsersModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/users.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="logo-section">
+                    <img src="https://designli.co/hs-fs/hubfs/images/global%20components/logo/logoWhite-compressed.png?width=882&height=246&name=logoWhite-compressed.png" alt="Designli Logo">
+                    <h1>User Management App</h1>
+                </div>
+                <div class="user-info">
+                    <span>Welcome, <span class="username" id="currentUsername"></span></span>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="users-card">
+            <div class="card-header">
+                <h2>All Users</h2>
+            </div>
+
+            <div id="loadingMessage" class="loading">
+                Loading users...
+            </div>
+
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+            <table class="users-table" id="usersTable" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                </tbody>
+            </table>
+
+            <div id="noDataMessage" class="no-data" style="display: none;">
+                No users found.
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/users.js"></script>
+</body>
+</html>
